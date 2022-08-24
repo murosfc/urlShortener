@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="~{fragmentos :: import-css(title='URL Shortener by Felipe Muros')}">
+</head>
+<body>
+	<div th:replace="~{fragmentos :: barramenu(pagina='home')}"></div>
+	<div class="container">
+
+		<div th:replace="~{fragmentos :: mensagens}"></div>
+		<form th:object="${urlshortener}" th:action="@{~/urlshortener/{id} (id=${urlshortener.id})}" method="post" class="card-body">
+			<input type="hidden" th:field="*{id}" />
+			<div class="row g-1">
+				<div class="col-md-12">
+					<label for="url">URL:</label> <input th:field="*{url}" type="text" class="form-control" placeholder="Cole aqui a URL que deseja encurtar" required="required" name="url" />
+				</div>
+			</div>
+			<div class="card-footer" style="margin-top: 20px">
+				<input type="submit" class="btn btn-success" value="Gerar" /> <input
+					type="reset" class="btn btn-warning" value="Limpar" />
+			</div>
+	</div>
+	<div th:replace="~{fragmentos :: import-js}"></div>
+</body>
+</html>

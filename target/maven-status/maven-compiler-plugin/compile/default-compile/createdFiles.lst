@@ -1,0 +1,4 @@
+com\uurl\controller\view\UrlTagViewController.class
+com\uurl\app\MicroUrlApplication.class
+com\uurl\model\UrlTag.class
+com\uurl\service\UrlTagService.class
