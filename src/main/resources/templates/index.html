@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head
-	th:replace="~{fragmentos :: import-css(title='URL Shortener by Felipe Muros')}">
-</head>
-<body>
-	<div th:replace="~{fragmentos :: barramenu(pagina='home')}"></div>
-	<div class="container">
+      xmlns:th="http://www.thymeleaf.org">
+    <head
+        th:replace="~{fragmentos :: import-css(title='URL Shortener by Felipe Muros')}">
+    </head>
+    <body>
+        <div th:replace="~{fragmentos :: barramenu(pagina='home')}"></div>
+        <div class="container">
 
-		<div th:replace="~{fragmentos :: mensagens}"></div>
-		<form th:object="${urlshortener}" th:action="@{~/urlshortener/{id} (id=${urlshortener.id})}" method="post" class="card-body">
-			<input type="hidden" th:field="*{id}" />
-			<div class="row g-1">
-				<div class="col-md-12">
-					<label for="url">URL:</label> <input th:field="*{url}" type="text" class="form-control" placeholder="Cole aqui a URL que deseja encurtar" required="required" name="url" />
-				</div>
-			</div>
-			<div class="card-footer" style="margin-top: 20px">
-				<input type="submit" class="btn btn-success" value="Gerar" /> <input
-					type="reset" class="btn btn-warning" value="Limpar" />
-			</div>
-	</div>
-	<div th:replace="~{fragmentos :: import-js}"></div>
-</body>
+            <div th:replace="~{fragmentos :: mensagens}"></div>
+
+            <form th:object="${urlshortener}" th:action="@{~/new/{id} (id=${urlshortener.id})}" method="post" class="card-body">
+                <input type="hidden" th:field="*{id}" />
+                <div class="row g-1">
+                    <div class="col-md-12">
+                        <label for="URL">URL:</label> <input th:field="*{URL}" type="text" class="form-control" placeholder="Cole aqui a URL que deseja encurtar" required="required" name="url"/>
+                        <div  th:if="*{tag}" class="col-md-4">
+                            <label for="newURL">Nova URL:</label><input id="newURL" type="text" th:value="${newUrl}" class="form-control" name="newURL" disabled="true"/><button onclick="copy()">Copy text</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer" style="margin-top: 20px">
+                    <input type="submit" class="btn btn-success" value="Gerar" /> <input
+                        type="reset" class="btn btn-warning" value="Limpar" />
+                </div>
+        </div>
+        <div th:replace="~{fragmentos :: import-js}"></div>
+        <script>
+            function copy() {                
+                var copyText = document.getElementById("newUrl");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+                navigator.clipboard.writeText(copyText.value);
+                alert("Copied the text: " + copyText.value);
+            }
+        </script>
+    </body>
 </html>

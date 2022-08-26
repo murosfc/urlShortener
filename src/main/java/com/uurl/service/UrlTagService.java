@@ -15,7 +15,7 @@ public class UrlTagService {
 	}
 	
 	public UrlTag save (UrlTag urlTag) {
-		if (urlTag.getTag().isEmpty()) {
+		if (urlTag.getTag() == null) {
 			urlTag.generateAndSetTag();
 		}
 		try {

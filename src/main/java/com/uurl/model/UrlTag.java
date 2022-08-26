@@ -34,8 +34,8 @@ public class UrlTag {
     private final int tagLen = 8;
     private final String chars = "ABCDEFGHIJKLMNOPQRSTUVXWYZ";
 
-    public UrlTag() {
-        this.generateAndSetTag();
+    public UrlTag() {        
+        this.URL = "";        
     }
 
     public UrlTag(String tag, String uRL) {
@@ -63,9 +63,10 @@ public class UrlTag {
         return URL;
     }
 
-    public void setURL(String uRL) {
-        URL = uRL;
+    public void setURL(String URL) {
+        this.URL = URL;
     }
+
 
     @Override
     public int hashCode() {
